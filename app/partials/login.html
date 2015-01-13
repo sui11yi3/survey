@@ -1,0 +1,31 @@
+<section class="master">
+	<div id="instruction">
+		<p><b>Admin</b> role(username/password: admin/admin) has full privilege to control this app.</p>
+		<p><b>Editor</b> role(username/password: editor1/editor1 and editor2/editor2) can view, create or edit own surveys.</p>
+		<p><b>User</b> role(username/password: user/user) can only view surveys.</p>
+		<br>
+	</div>
+
+	<form class="form-horizontal" name="loginForm">
+		<div class="form-group">
+			<p class="col-sm-6 alert alert-danger" ng-show="error.length>0" id="inputError"><strong>{{error}}</strong></p>
+		</div>
+		<div class="form-group">
+			<label for="inputUsername" class="col-sm-4 control-label">Username</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" name="nameForm" id="inputUsername" placeholder="Username" ng-model="user.username" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputPassword" class="col-sm-4 control-label">Password</label>
+			<div class="col-sm-4">
+				<input type="password" class="form-control" name="passwordForm" id="inputPassword" placeholder="Password" ng-model="user.password" required>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-10">
+				<button type="submit" class="btn btn-primary" ng-click="signIn(user.username, user.password)" ng-disabled="loginForm.$invalid">Sign In</button>
+			</div>
+		</div>
+	</form>
+</section>

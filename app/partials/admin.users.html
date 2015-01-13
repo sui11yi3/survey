@@ -1,0 +1,26 @@
+<ol class="breadcrumb">
+    <li class="active">User List</li>
+    <li><a href="#/admin/register">Register</a></li>
+</ol>
+<section class="master">
+    <table class="table table-condensed table-hover">
+        <col width="30%">
+        <col width="30%">
+        <col width="40%">
+        <thead>
+            <tr>
+                <th>User</th>
+                <th>Role</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+        <tbody> 
+            <tr ng-repeat="user in users">
+                <td>{{user.username}}</td>
+                <td>{{user.role}}</td>
+                <td>{{user.created | date:'medium'}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>

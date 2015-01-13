@@ -1,0 +1,68 @@
+<ol class="breadcrumb">
+    <li><a href="#/survey/list">Survey List</a></li>
+    <li><a href="#/survey/chart">Survey Chart</a></li>
+</ol>
+
+<section class="master" ng-controller="ModalCtrl">
+
+	<form class="form-horizontal" role="form" name="surveyForms">
+		<div class="form-group" ng-class="{'has-error': surveyForms.nameForm.$invalid && !surveyForms.nameForm.$pristine}">
+			<label for="inputName" class="col-sm-4 control-label">Name</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" name="nameForm" id="inputName" placeholder="Name" ng-model="survey.name" required>
+			</div>
+			<span class="hil" ng-show="surveyForms.nameForm.$invalid && !surveyForms.nameForm.$pristine"><b>Required</b></span>
+		</div>
+		<div class="form-group" ng-class="{'has-error': surveyForms.cityForm.$invalid && !surveyForms.cityForm.$pristine}">
+			<label for="inputCity" class="col-sm-4 control-label">City</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" name="cityForm" id="inputCity" placeholder="City" ng-model="survey.city" required>
+			</div>
+			<span class="hil" ng-show="surveyForms.cityForm.$invalid && !surveyForms.cityForm.$pristine"><b>Required</b></span>
+		</div>
+		<div class="form-group">
+			<label for="inputGender" class="col-sm-4 control-label">Gender</label>
+			<div class="col-sm-4" ng-init="survey.gender='Male'" required>
+				<div>
+					<input type="radio" id="inputGender" ng-model="survey.gender" value="Male"><label>Male</label>
+				</div>
+				<div>
+					<input type="radio" id="inputGender" ng-model="survey.gender" value="Female"><label>Female</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputUserRole" class="col-sm-4 control-label">Kids</label>
+			<div class="col-sm-4">
+				<select ng-model="survey.kids" id='inputUserRole' class="form-control" ng-init="survey.kids='0'" required>
+					<option>0</option>
+					<option>1</option>
+					<option>2</option>
+					<option>3+</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-10">
+				<a href="#/survey/list" class="btn btn-default">Cancel</a>
+				<button type="submit" class="btn btn-primary" ng-disabled="surveyForms.$invalid" ng-click="save(survey)">Save</button>
+				<button class="btn btn-danger" ng-click="openModal(survey._id)" ng-show="survey._id">Delete</button>
+			</div>
+		</div>
+	</form>
+		<div class="modal-dialog" ng-show="modalShown" id="deleteConfirm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="pull-right" ng-click="closeModal()" id="modalDismiss"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title"><b>Warning</b></h4>
+				</div>
+				<div class="modal-body">
+					<p>Are you sure want to delete this survey?</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" ng-click="closeModal()">Cancel</button>
+					<button ng-click="deleteSurvey()" class="btn btn-danger">Delete</button>
+				</div>
+			</div>
+		</div>
+</section>

@@ -1,0 +1,49 @@
+<ol class="breadcrumb">
+	<li><a href="#/admin/users">User List</a></li>
+	<li class="active">Register</li>
+</ol>
+<section class="master">
+	<form class="form-horizontal" role="form" name="registerForm">
+		<div class="form-group">
+			<p class="col-sm-6 alert alert-danger" ng-show="error.length>0" id="inputError"><strong>{{error}}</strong></p>
+		</div>		
+		<div class="form-group" ng-class="{'has-error': registerForm.nameForm.$invalid && !registerForm.nameForm.$pristine}" >
+			<label for="inputUsername" class="col-sm-4 control-label">Username</label>
+			<div class="col-sm-4">
+				<input type="text" class="form-control" name="nameForm" id="inputUsername" placeholder="Username" ng-model="register.username" required>
+			</div>
+			<span class="hil" ng-show="registerForm.nameForm.$invalid && !registerForm.nameForm.$pristine"><b>Required</b></span>
+		</div>
+		<div class="form-group" ng-class="{'has-error': registerForm.passwordForm.$invalid && !registerForm.passwordForm.$pristine}">
+			<label for="inputPassword" class="col-sm-4 control-label">Password</label>
+			<div class="col-sm-4">
+				<input type="password" class="form-control" name="passwordForm" id="inputPassword" placeholder="Password" ng-model="register.password" required>
+			</div>
+			<span class="hil" ng-show="registerForm.passwordForm.$invalid && !registerForm.passwordForm.$pristine"><b>Required</b></span>
+		</div>
+		<div class="form-group" ng-class="{'has-error': registerForm.passwordConfForm.$invalid && !registerForm.passwordConfForm.$pristine}">
+			<label for="inputPasswordConfirmation" class="col-sm-4 control-label">Password Confirmation</label>
+			<div class="col-sm-4">
+				<input type="password" class="form-control" name="passwordConfForm" id="inputPasswordConfirmation" placeholder="Password" ng-model="register.passwordConfirmation" required>
+			</div>
+			<span class="hil" ng-show="registerForm.passwordConfForm.$invalid && !registerForm.passwordConfForm.$pristine"><b>Required</b></span>
+		</div>
+		<div class="form-group">
+			<label for="inputUserRole" class="col-sm-4 control-label">Role</label>
+			<div class="col-sm-4">
+				<select ng-model="register.role" id='inputUserRole' class="form-control" ng-init="register.role='user'" required>
+					<option>user</option>
+					<option>editor</option>
+					<option>admin</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-sm-offset-4 col-sm-10">
+				<button type="submit" class="btn btn-default" ng-click="register(register.username, register.password, register.passwordConfirmation, register.role)" ng-disabled="registerForm.$invalid">
+					Register
+				</button>
+			</div>
+		</div>
+	</form>
+</section>

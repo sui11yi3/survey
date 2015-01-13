@@ -1,0 +1,111 @@
+html {
+	overflow-y: scroll;
+	height: 100%;
+
+	body {
+		font-family: 'Varela Round', sans-serif;
+		background-color: black;
+		font-size: 1.3em;
+		width: 500px;
+	}
+}
+
+.parent {
+	position: relative;
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 80px;
+	background-color: white;
+}
+
+
+.post {
+	background: #fff;
+
+	box-shadow: 0px 1px 1px #aaa;
+	padding: 20px 40px; 
+	margin-bottom: 30px auto;
+
+	position: relative;
+}
+
+#deleteConfirm {
+	position: absolute;
+	top: 40px;
+    margin-left: 22%;
+    margin-right: 28%;
+    width: 50%;
+
+}
+
+#instruction {
+    margin-left: 25%;
+    margin-right: 25%;
+    width: 50%;
+}
+
+#userInfo {
+	position: absolute;
+	right: 1px;
+	top: -1px;
+}
+
+#userLabel {
+	border-radius: 5px;
+}
+
+#inputError {
+    margin-left: 30%;
+    margin-right: 30%;
+    width: 40%;
+	text-align: center;
+	font-size: 120%;
+}
+
+.pieChart {
+ width: 500px;
+ height: 500px;
+}
+
+.hil {
+	display:inline-block;
+	padding-top: 11px;
+	color: red;
+}
+
+.breadcrumb {
+	margin-top: 20px;
+	margin-bottom: 0px;
+}
+
+#modalDismiss {
+	border: 0;
+	background-color: white;
+}
+
+#listNav {
+	position: relative;
+}
+
+#listExport {
+	position: absolute;
+	right: 10px;
+	top: 5px
+}
+
+.main-row {
+    cursor: pointer;
+}
+
+.main-row:hover {
+    background-color: #F0F0F0;
+}
+
+.main-row-click {
+    background-color: #F0F0F0;
+}
+
+.extra-row {
+    background-color: #F0F0F0;
+}

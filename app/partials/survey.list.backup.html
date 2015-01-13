@@ -1,0 +1,36 @@
+<ol class="breadcrumb" id="listNav">
+    <li class="active">Survey List</li>
+    <li><a href="#/survey/chart">Survey Chart</a></li>
+    <div id="listExport">
+        <button class="btn btn-primary btn-xs" type="button" ng-csv="exportData" filename="exports.csv" add-bom="true" 
+                csv-header="['name', 'gender', 'city', 'kids', 'creator', 'created time']">
+            Export
+        </button>
+    </div>
+</ol>
+
+<section class="post">
+    <table class="table table-condensed table-hover" ts-wrapper>
+        <col width="30%">
+        <col width="30%">
+        <col width="30%">
+        <col width="10%">
+        <thead>
+            <tr>
+                <th ts-criteria="name">Name</th>
+                <th ts-criteria="creator.username">Creator</th>
+                <th ts-criteria="created" ts-default="descending">Created</th>
+                <th><a ng-show="role=='editor' || role=='admin'" href="#/survey/create">New</a></th>
+            </tr>
+        </thead>
+        <tbody> 
+            <tr ng-repeat="survey in surveys" ts-repeat>
+                <td>{{survey.name}}</td>
+                <td>{{survey.creator.username}}</td>
+                <td>{{survey.created | date:'medium'}}</td>
+                <td><a ng-show="(currentUser==survey.creator._id && role=='editor') || role=='admin'" href="#/survey/edit/{{survey._id}}">Edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+</section>

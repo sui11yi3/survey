@@ -1,0 +1,74 @@
+<ol class="breadcrumb" id="listNav">
+	<li class="active">Survey List</li>
+	<li><a href="#/survey/chart">Survey Chart</a></li>
+	<div id="listExport">
+        <a href="#/survey/create" class="btn btn-success btn-xs">New</a>
+		<button class="btn btn-primary btn-xs" type="button" ng-csv="exportData" filename="exports.csv" add-bom="true" 
+				csv-header="['name', 'gender', 'city', 'kids', 'creator', 'created time']">
+			Export
+		</button>
+	</div>
+</ol>
+
+<section class="master" ng-controller="ModalCtrl">
+	<table class="table table-condensed" ng-controller="ExpandCtrl" ts-wrapper>
+		<col width="30%">
+		<col width="30%">
+		<col width="30%">
+		<thead>
+			<tr>
+				<th ts-criteria="name">Name</th>
+				<th ts-criteria="creator.username">Creator</th>
+				<th ts-criteria="created" ts-default="descending">Created</th>
+			</tr>
+		</thead>
+		<tbody ng-repeat="survey in surveys" ts-repeat> 
+			<tr class="main-row" ng-click="toggleDetail(survey._id)" ng-class="{'main-row-click': activeId==survey._id}">
+				<td>{{survey.name}}</td>
+				<td>{{survey.creator.username}}</td>
+				<td>{{survey.created | date:'medium'}}</td>
+			</tr>
+			<tr class="extra-row" ng-show="activeId==survey._id">
+				<td colspan="3">
+                    <div class="form-group">
+                        <div class="col-sm-offset-1 col-sm-10">                    
+        					<h4><b>Detail</b></h4>
+                            <p><b>Name:</b> {{survey.name}}</p>
+        					<p><b>City:</b> {{survey.city}}</p>
+        					<p><b>Gender:</b> {{survey.gender}}</p>
+        					<p><b>Kids:</b> {{survey.kids}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-1 col-sm-10">
+                            <a ng-show="(currentUser==survey.creator._id && role=='editor') || role=='admin'" href="#/survey/edit/{{survey._id}}" class="btn btn-primary btn-sm">
+                                Edit
+                            </a>
+                            <button ng-show="(currentUser==survey.creator._id && role=='editor') || role=='admin'" class="btn btn-danger btn-sm" ng-click="openModal(survey._id)" ng-show="survey._id">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+    <div class="modal-dialog" ng-show="modalShown" id="deleteConfirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="pull-right" ng-click="closeModal()" id="modalDismiss"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><b>Warning</b></h4>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure want to delete this survey?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" ng-click="closeModal()">Cancel</button>
+                <button ng-click="deleteSurvey()" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
